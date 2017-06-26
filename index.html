@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Intraday Calculator</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<script>
+$(document).ready(function(){
+    $(".capital").keyup(function(){
+        $(".margin").val($(".capital").val()*20);
+    });
+	 $(".stopLoss").keyup(function(){
+        $(".riskPerShare").val($(".stockPrice").val()-$(".stopLoss").val());
+    });
+	$(".calculate").click(function(){
+	var capital= $(".capital").val();
+	var stockPrice= $(".stockPrice").val();
+	var stocklLoss= $(".stopLoss").val();
+		var risk = $(".risk").val();
+		var quantity  = (((risk * capital)/100)/(stockPrice-stocklLoss));
+	$(".quantity").text("Quantity  = "+quantity);
+	});
+	
+	$(".reset").click(function(){
+		location.reload();
+	});
+});
+
+</script>
+<body class="container">
+
+<div class="container btn btn-info text-center">
+  <h2>Intraday Quantity Calculator</h2><h5>V&nbsp;1.0</h5>
+  <hr/>  
+</div>
+<div class="container text-center">
+	<div class="well">
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group">
+				  <label for="comment">Capital:</label>
+				  <input type="number" class="form-control capital" placeholder="Enter Capital">
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="form-group">
+				  <label for="comment">Margin:</label>
+				  <input type="number" class="form-control margin" placeholder="Margin" disabled>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group">
+				  <label for="comment">Stock Price:</label>
+				  <input type="number" class="form-control stockPrice" placeholder="Enter StockPrice">
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="form-group">
+				  <label for="comment">Stop Loss:</label>
+				  <input type="number" class="form-control stopLoss" placeholder="Enter Stop Loss">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group">
+				  <label for="sel1">Risk:</label>
+				  <select class="form-control risk" id="sel1">
+					<option>1</option>	
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+				  </select>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="form-group">
+				  <label for="comment">Risk Per Share:</label>
+				  <input type="number" class="form-control riskPerShare" placeholder="Risk Per Share" disabled>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-6">
+				<div class="form-group">
+				  <h1></h1><h1 class="quantity"></h1>
+				</div>
+			</div>
+			<div class="col-sm-3"></div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-6">
+				<button class="btn btn-primary btn-lg calculate"><i class="fa fa-calculator" aria-hidden="true"></i>&nbsp;&nbsp;Calculate</button>
+				<button class="btn btn-warning btn-lg reset"><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;&nbsp;Reset</button>
+				
+			</div>
+			<div class="col-sm-3"></div>
+		</div>
+	
+	</diV>
+
+</div>
+<footer>
+	<div class="text-right">
+		<i class="fa fa-copyright" aria-hidden="true"></i>&nbsp;&nbsp;2017&nbsp;By<b>&nbsp;VBS</b>
+	</div>
+
+
+
+</footer>
+</body>
+</html>
