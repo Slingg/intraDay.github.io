@@ -24,7 +24,7 @@ $(document).ready(function(){
 	var stockPrice= $(".stockPrice").val();
 	var stocklLoss= $(".stopLoss").val();
 		var risk = $(".risk").val();
-		var quantity  = (((risk * capital)/100)/(stockPrice-stocklLoss));
+		var quantity  = parseInt((((risk * capital)/100)/(stockPrice-stocklLoss)));
 	$(".quantity").text("Quantity  = "+quantity);
 	});
 	
@@ -32,6 +32,7 @@ $(document).ready(function(){
 		$("input").each(function(){
 			$(this).val('');
 		});
+		$(".quantity").text('');
 	});
 });
 
